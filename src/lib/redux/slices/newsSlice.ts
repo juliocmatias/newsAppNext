@@ -2,6 +2,7 @@
 import { NewsCategoryEnum } from "@/enums";
 import { News, NewsData } from "@/types";
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { v4 as uuidv4 } from 'uuid';
 
 
 export const fetchNews = createAsyncThunk(
@@ -9,7 +10,7 @@ export const fetchNews = createAsyncThunk(
   async (category: NewsCategoryEnum): Promise<News> => {
     const response = await fetch(`/api/top-headlines?category=${category}`);
     const data: NewsData = await response.json();
-    return data.data.articles;
+    return data.data.articles.map((article) => ({ ...article, id: uuidv4() }));
   }
 );
 

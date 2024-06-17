@@ -17,8 +17,8 @@ export const NewsFeed = ({ category }: NewsFeedProps) => {
   return (
     <>
       <Grid sm={1} md={2} lg={3} gap={10}>
-        {news.map((article, index) => (
-          <NewsCard key={index} article={ article } category={category}/>
+        {news.map((article) => (
+          <NewsCard key={ article.id } article={ article } category={ category }/>
         ))}
       </Grid>
     </>

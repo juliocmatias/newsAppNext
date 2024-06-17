@@ -10,11 +10,13 @@ type NewsCardProps = {
 };
 
 export const NewsCard = ({ article, category }: NewsCardProps) => {
-  const { title, urlToImage, publishedAt, source } = article;
+  const { title, urlToImage, publishedAt, source, id } = article;
 
-  if (title === "[Removed]" || title === "[Deleted]" || !title) return null;
+  if(title === "[Removed]" || title === "[Deleted]" || !title) return null;
 
-  const hrefPath = path.join('/', category === NewsCategoryEnum.HOME_PAGE ? 'home' : category.toString(), title);
+  if(Object.values(source).some(value => value === null)) return null;
+
+  const hrefPath = path.join('/', category === NewsCategoryEnum.HOME_PAGE ? 'home' : category.toString(), id);
 
   const currentImage = urlToImage ? urlToImage : "/assets/images/null.jpg";
 
