@@ -14,9 +14,9 @@ export const NewsCard = ({ article, category }: NewsCardProps) => {
 
   if(title === "[Removed]" || title === "[Deleted]" || !title) return null;
 
-  if(Object.values(source).some(value => value === null)) return null;
+  if(Object.values(article).some(value => value === null)) return null;
 
-  const hrefPath = path.join('/', category === NewsCategoryEnum.HOME_PAGE ? 'home' : category.toString(), id);
+  const hrefPath = path.join('/', category.toString(), id);
 
   const currentImage = urlToImage ? urlToImage : "/assets/images/null.jpg";
 
